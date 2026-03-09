@@ -7,7 +7,7 @@ import { Observer } from "mobx-react-lite";
 
 
 export default function NavBar() {
-  const {uiStore} = useStore()
+  const { uiStore } = useStore()
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -36,6 +36,9 @@ export default function NavBar() {
               <MenuItemLink to='/counter'>
                 Counter
               </MenuItemLink>
+              <MenuItemLink to='/errors'>
+                Errors
+              </MenuItemLink>
             </Box>
             <MenuItem>
               User Menu
@@ -44,16 +47,16 @@ export default function NavBar() {
         </Container>
 
         <Observer>
-          {()=> uiStore.isLoading ? (
+          {() => uiStore.isLoading ? (
             <LinearProgress
-            color="secondary"
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 4,
-            }}
+              color="secondary"
+              sx={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 4,
+              }}
             />
           ) : null}
         </Observer>
