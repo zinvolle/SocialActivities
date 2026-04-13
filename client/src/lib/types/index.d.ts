@@ -4,7 +4,7 @@ type Activity = {
   date: Date
   description: string
   category: string
-  isCancelled: boolean
+  isCancelled?: boolean
   city: string
   venue: string
   latitude: number
@@ -14,13 +14,22 @@ type Activity = {
   isHost: boolean
   hostId: string
   hostDisplayName: string
-  hostImageUrl: string
+  hostImageUrl?: string
 }
 
 type Profile = {
   id: string
   displayName: string
   bio?: string
+  imageUrl?: string
+}
+
+type ChatComment = {
+  id: string
+  createdAt: Date
+  body: string
+  userId: string
+  displayName: string
   imageUrl?: string
 }
 
@@ -64,4 +73,15 @@ type User = {
 type Photo = {
   id: string
   url: string
+}
+
+type EditActivityDto = {
+  title: string
+  description: string
+  category: string
+  date: Date
+  venue: string
+  city?: string
+  latitude: number
+  longitude: number
 }

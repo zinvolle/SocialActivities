@@ -36,15 +36,16 @@ export default function ActivityForm() {
 
     const onSubmit = async (data: ActivitySchema) => {
         const {location, ...rest} = data;
-        const flattenedData = {...rest, ...location, date: data.date.toISOString(),}
-        console.log(data)
-
+        const flattenedData = {...rest, ...location, date: data.date,}
+        console.log('flattenData:' , flattenedData)
         try {
             if (activity){
+                console.log('updating activity')
                 updateActivity.mutate({...activity, ...flattenedData}, {
                     onSuccess: () => navigate(`/activities/${activity.id}`)
                 })
             } else {
+                console.log('creating activity')
                 console.log(flattenedData)
                 createActivity.mutate(flattenedData, {
                     onSuccess: (id) => navigate(`/activities/${id}`)
