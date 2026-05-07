@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# exclude docker
+docker-compose.yml
+
 # dotenv files
 .env
 
