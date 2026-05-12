@@ -15,7 +15,7 @@ export const useAccount = () => {
         mutationFn: async (creds: LoginSchema) => {
             await agent.post('/login?useCookies=true', creds)
         },
-        onSuccess: async ()=>{
+        onSuccess: async () => {
             await queryClient.invalidateQueries({
                 queryKey: ['user']
             });
@@ -26,10 +26,6 @@ export const useAccount = () => {
         mutationFn: async (creds: RegisterSchema) => {
             await agent.post('/account/register', creds)
         },
-        onSuccess: () => {
-            toast.success('Register successful - you can now login')
-            navigate('/login')
-        }
     })
 
     const logoutUser = useMutation({
@@ -37,13 +33,34 @@ export const useAccount = () => {
             await agent.post('/account/logout')
         },
         onSuccess: () => {
-            queryClient.removeQueries({queryKey: ['user']});
-            queryClient.removeQueries({queryKey: ['activities']});
+            queryClient.removeQueries({ queryKey: ['user'] });
+            queryClient.removeQueries({ queryKey: ['activities'] });
             navigate('/');
         }
     })
 
-    const {data: currentUser, isLoading: loadingUserInfo} = useQuery({
+    const verifyEmail = useMutation({
+        mutationFn: async ({ userId, code }: { userId: string, code: string }) => {
+            await agent.get(`/confirmEmail?userId=${userId}&code=${code}`)
+        }
+    })
+
+    const resendConfirmationEmail = useMutation({
+        mutationFn: async ({email,userId}: {email?: string, userId?: string | null }) => {
+            await agent.get('/account/resendConfirmEmail', {
+                params: {
+                    email,
+                    userId
+                }
+            });
+        },
+
+        onSuccess: () => {
+            toast.success('Email sent - please check your email');
+        }
+    });
+
+    const { data: currentUser, isLoading: loadingUserInfo } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             const response = await agent.get<User>('/account/user-info')
@@ -53,7 +70,7 @@ export const useAccount = () => {
     })
 
     return {
-        loginUser, currentUser, logoutUser, loadingUserInfo, registerUser
+        loginUser, currentUser, logoutUser, loadingUserInfo, registerUser, verifyEmail, resendConfirmationEmail
     }
 }
 
