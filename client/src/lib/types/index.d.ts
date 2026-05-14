@@ -32,6 +32,12 @@ type Profile = {
   following?: boolean
 }
 
+type ResetPassword = {
+  email: string,
+  resetCode: string,
+  newPassword: string
+}
+
 type ChatComment = {
   id: string
   createdAt: Date
