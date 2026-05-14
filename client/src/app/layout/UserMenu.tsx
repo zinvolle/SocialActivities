@@ -6,10 +6,10 @@ import { useState } from 'react';
 import { Avatar, Box, Divider, ListItemIcon, ListItemText } from '@mui/material';
 import { useAccount } from '../../lib/hooks/useAccount';
 import { Link } from 'react-router';
-import { Add, Logout, Person } from '@mui/icons-material';
+import { Add, Logout, Password, Person } from '@mui/icons-material';
 
 export default function UserMenu() {
-    const {currentUser, logoutUser} = useAccount();
+    const { currentUser, logoutUser } = useAccount();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,9 +28,9 @@ export default function UserMenu() {
                 sx={{ fontSize: '1.1rem' }}
             >
                 <Box display='flex' alignItems='center' gap={2}>
-                    <Avatar 
-                    src={currentUser?.imageUrl}
-                    alt="current user image"
+                    <Avatar
+                        src={currentUser?.imageUrl}
+                        alt="current user image"
                     />
                     {currentUser?.displayName}
                 </Box>
@@ -52,14 +52,20 @@ export default function UserMenu() {
                     </ListItemIcon>
                     <ListItemText>Create Activity</ListItemText>
                 </MenuItem>
-                   <MenuItem component={Link} to={`/profiles/${currentUser?.id}`} onClick={handleClose} >
+                <MenuItem component={Link} to={`/profiles/${currentUser?.id}`} onClick={handleClose} >
                     <ListItemIcon>
                         <Person />
                     </ListItemIcon>
                     <ListItemText>Profile</ListItemText>
                 </MenuItem>
+                  <MenuItem component={Link} to='/change-password' onClick={handleClose} >
+                    <ListItemIcon>
+                        <Password />
+                    </ListItemIcon>
+                    <ListItemText>Change Password</ListItemText>
+                </MenuItem>
                 <Divider />
-                <MenuItem onClick={()=>{
+                <MenuItem onClick={() => {
                     logoutUser.mutate();
                     handleClose();
                 }}>
