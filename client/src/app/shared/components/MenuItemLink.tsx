@@ -5,12 +5,14 @@ import { NavLink } from "react-router";
 export default function MenuItemLink({ children, to }: { children: ReactNode, to: string }) {
     return (
         <MenuItem component={NavLink} to={to} sx={{
-            fontSize: '1.2rem',
+            fontSize: '1.1rem',
             textTransform: 'uppercase',
             fontWeight: 'bold',
+            letterSpacing: 1,
+            borderRadius: 2,
             color: 'inherit',
             '&.active': {
-                color: 'yellow'
+                color: '#E9BCB7'
             }
         }}>
             {children}

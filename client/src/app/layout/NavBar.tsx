@@ -1,4 +1,4 @@
-import { Group } from "@mui/icons-material";
+import { Spa } from "@mui/icons-material";
 import { Box, AppBar, Toolbar, Typography, Container, MenuItem, CircularProgress } from "@mui/material";
 import { NavLink } from "react-router";
 import MenuItemLink from "../shared/components/MenuItemLink";
@@ -16,16 +16,17 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="fixed"
+        elevation={0}
         sx={{
-          backgroundImage: 'linear-gradient(135deg, #182a73 0%, #218aae 69%, #20a7ac 89%)',
+          backgroundImage: 'linear-gradient(135deg, #06070E 0%, #29524A 55%, #94A187 110%)',
         }}
       >
         <Container maxWidth='xl'>
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box>
               <MenuItem component={NavLink} to='/' sx={{ display: 'flex', gap: 2 }}>
-                <Group fontSize='large' />
-                <Typography variant="h4" fontWeight='bold' sx={{position: 'relative'}}>Social Activities</Typography>
+                <Spa fontSize='large' sx={{ color: '#E9BCB7' }} />
+                <Typography variant="h4" fontWeight='bold' sx={{position: 'relative', letterSpacing: 1}}>Sprouts</Typography>
                 <Observer>
                   {() => uiStore.isLoading ? (
                     <CircularProgress
@@ -46,12 +47,6 @@ export default function NavBar() {
             <Box sx={{ display: 'flex' }}>
               <MenuItemLink to='/activities'>
                 Activities
-              </MenuItemLink>
-              <MenuItemLink to='/counter'>
-                Counter
-              </MenuItemLink>
-              <MenuItemLink to='/errors'>
-                Errors
               </MenuItemLink>
             </Box>
             <Box display='flex' alignItems='center'>

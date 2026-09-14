@@ -47,7 +47,7 @@ export default function ActivityCard({ activity }: Props) {
                     <Typography variant="body2">{activity.venue}</Typography>
                 </Box>
                 <Divider />
-                <Box display='flex' gap={2} sx={{ backgroundColor: 'grey.200', py: 3, pl: 3 }}>
+                <Box display='flex' gap={2} sx={{ backgroundColor: 'rgba(148, 161, 135, 0.15)', borderRadius: 2, py: 3, pl: 3 }}>
                     {activity.attendees.map(att =>(
                         <AvatarPopover profile={att} key={att.id} />
                     ))}
@@ -58,12 +58,14 @@ export default function ActivityCard({ activity }: Props) {
                     {activity.description}
                 </Typography>
 
-                <Button size="medium"
-                    variant="contained"
-                    component={Link}
-                    to={`/activities/${activity.id}`}
-                    sx={{ display: 'flex', justifySelf: 'self-end', borderRadius: 3 }}>
-                    View</Button>
+                <Box display='flex' justifyContent='flex-end' mt={2}>
+                    <Button size="medium"
+                        variant="contained"
+                        component={Link}
+                        to={`/activities/${activity.id}`}
+                        sx={{ borderRadius: 3 }}>
+                        View</Button>
+                </Box>
             </CardContent>
         </Card>
     )

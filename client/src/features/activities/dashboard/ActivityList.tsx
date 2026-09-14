@@ -17,7 +17,7 @@ const ActivityList = observer(function ActivityList() {
     if (inView && hasNextPage){
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage()])
+  }, [inView, hasNextPage, fetchNextPage])
 
   if (isLoading) return <Typography>Loading...</Typography>
 

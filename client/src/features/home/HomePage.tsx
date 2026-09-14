@@ -1,4 +1,4 @@
-import { Group } from "@mui/icons-material";
+import { Spa } from "@mui/icons-material";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { Link } from "react-router";
 
@@ -14,26 +14,28 @@ export default function HomePage() {
         alignContent: 'center',
         justifyContent: 'center',
         height: '100vh',
-        backgroundImage: 'linear-gradient(135deg, #182a73 0%, #218aae 69%, #20a7ac 89%)'
+        borderRadius: 0,
+        backgroundImage: 'linear-gradient(135deg, #06070E 0%, #29524A 55%, #94A187 110%)'
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', alignContent: 'center', color: 'white', gap: 3 }}>
-        <Group sx={{ heigh: 110, width: 110 }} />
-        <Typography variant="h1">
-          Social Activities
+        <Spa sx={{ height: 110, width: 110, color: '#E9BCB7' }} />
+        <Typography variant="h1" sx={{ letterSpacing: 2 }}>
+          Sprouts
         </Typography>
       </Box>
-      <Typography variant="h2">
-          Welcome to Social Activities Platform
+      <Typography variant="h4" sx={{ color: '#C5AFA0', fontWeight: 400 }}>
+          Where new connections grow
       </Typography>
       <Button
       component={Link}
       to='/activities'
       size="large"
       variant="contained"
-      sx={{height:80, borderRadius:4, fontSize:'1.5rem'}}
+      color="info"
+      sx={{height:64, borderRadius:4, px: 5, fontSize:'1.25rem'}}
       >
-        Take me to the activities
+        Explore activities
       </Button>
     </Paper>
   )
