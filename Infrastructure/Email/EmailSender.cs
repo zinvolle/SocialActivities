@@ -28,7 +28,7 @@ public class EmailSender(IServiceScopeFactory scopeFactory, IConfiguration confi
         var resend = scope.ServiceProvider.GetRequiredService<IResend>();
         var message = new EmailMessage
         {
-            From = "whatever@resend.dev",
+            From = "no-reply@aangsyd.com",
             Subject = subject,
             HtmlBody = body
         };
